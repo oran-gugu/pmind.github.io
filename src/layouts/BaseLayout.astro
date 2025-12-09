@@ -1,0 +1,50 @@
+---
+import Masthead from "../components/Masthead.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  showBackToTop?: boolean;
+}
+
+const {
+  title = "pmai",
+  description = "pmai's personal website",
+  showBackToTop = true
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/images/dw-icon.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/academicons.css" />
+    <link rel="stylesheet" href="/assets/css/collapse.css" />
+    <link rel="stylesheet" href="/css/toc-sticky.css" />
+    <link rel="stylesheet" href="/css/site-logo.css" />
+    <link rel="stylesheet" href="/css/color-override.css" />
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, "") + " js";
+    </script>
+  </head>
+  <body>
+    <Masthead />
+
+    <main id="content">
+      <slot />
+    </main>
+
+    {showBackToTop && <BackToTop />}
+    <Footer />
+
+    <script type="module" src="/assets/js/main.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+/* ==========================================================================
+   TABLE OF CONTENTS - STICKY LAYOUT FOR ASTRO
+   ========================================================================== */
+
+/* Main container - center content by default */
+#main {
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 800px; /* Center content on pages without TOC */
+  width: 100%;
+}
+
+/* Main container with TOC - wider layout */
+#main.has-toc {
+  display: block;
+  max-width: 1200px; /* Allow wider layout for TOC + content */
+}
+
+@media (min-width: 925px) {
+  #main.has-toc {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+}
+
+/* Page wrapper */
+.page__wrap {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 925px) {
+  .page__wrap {
+    flex: 1;
+    max-width: 750px;
+  }
+}
+
+/* Sidebar left - TOC container */
+.sidebar__left {
+  display: none;
+}
+
+@media (min-width: 925px) {
+  .sidebar__left {
+    display: block;
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    order: -1;
+  }
+}
+
+/* TOC styling */
+.toc {
+  background: #ffffff;
+  border: 1px solid var(--global-border-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toc .nav__title {
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--global-border-color, #e5e7eb);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--global-text-color, #1f2937);
+}
+
+.toc .nav__title i {
+  margin-right: 0.5rem;
+  color: #667eea;
+}
+
+/* TOC menu */
+.toc__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.toc__menu li {
+  margin: 0.25rem 0;
+  padding: 0;
+}
+
+/* H1 level links */
+.toc__menu > li > a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  color: var(--global-text-color, #1f2937);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.toc__menu > li > a:hover {
+  color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.08);
+  border-left-color: var(--global-link-color, #e67e22);
+}
+
+.toc__menu > li > a.active {
+  color: var(--global-link-color, #e67e22);
+  font-weight: 700;
+  border-left-color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.08);
+}
+
+/* H2 level links */
+.toc__menu > li > ul > li > a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: var(--global-text-color-light, #6b7280);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.toc__menu > li > ul > li > a:hover {
+  color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.06);
+  border-left-color: var(--global-link-color, #e67e22);
+}
+
+.toc__menu > li > ul > li > a.active {
+  color: var(--global-link-color, #e67e22);
+  font-weight: 600;
+  border-left-color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.06);
+}
+
+/* H3 level links */
+.toc__menu > li > ul > li > ul > li > a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  color: var(--global-text-color-light, #9ca3af);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.toc__menu > li > ul > li > ul > li > a:hover {
+  color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.05);
+  border-left-color: var(--global-link-color, #e67e22);
+}
+
+.toc__menu > li > ul > li > ul > li > a.active {
+  color: var(--global-link-color, #e67e22);
+  font-weight: 600;
+  border-left-color: var(--global-link-color, #e67e22);
+  background: rgba(230, 126, 34, 0.05);
+}
+
+/* Nested lists */
+.toc__menu ul {
+  list-style: none;
+  margin-left: 1rem;
+  margin-top: 0.25rem;
+  padding: 0;
+}
+
+/* Scrollbar styling for TOC */
+.sidebar__left::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar__left::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar__left::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.sidebar__left::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

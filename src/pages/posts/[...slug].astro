@@ -1,0 +1,30 @@
+---
+import PostLayout from "../../layouts/PostLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => {
+    const permalink = post.data.permalink ?? `/posts/${post.slug}/`;
+    const slugArray = permalink.replace(/^\/|\/$/g, "").split("/");
+    // remove leading "posts" since this file is nested under /posts
+    const slugString = slugArray[0] === "posts" ? slugArray.slice(1).join("/") : slugArray.join("/");
+    return {
+      params: { slug: slugString },
+      props: { post, permalink }
+    };
+  });
+}
+
+const { post, permalink } = Astro.props;
+const { Content, headings } = await post.render();
+const readTime = Math.max(1, Math.ceil((post.body ?? "").split(/\s+/).length / 160));
+---
+
+<PostLayout
+  frontmatter={post.data}
+  Content={Content}
+  headings={headings}
+  readTime={readTime}
+  permalink={permalink}
+/>

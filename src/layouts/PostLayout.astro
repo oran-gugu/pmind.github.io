@@ -1,0 +1,128 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import TOC from "../components/TOC.astro";
+
+interface Frontmatter {
+  title: string;
+  date: string;
+  excerpt?: string;
+  header?: { teaser?: string };
+  tags?: string[];
+}
+
+interface Props {
+  frontmatter: Frontmatter;
+  Content: AstroComponentFactory;
+  headings: { depth: number; slug: string; text: string }[];
+  readTime?: number;
+  permalink: string;
+}
+
+const { frontmatter, Content, headings = [], readTime = 0, permalink } = Astro.props;
+const hasTOC = headings.length > 0;
+const date = frontmatter.date ? new Date(frontmatter.date) : null;
+const formattedDate = date ? date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" }) : "";
+---
+
+<BaseLayout title={`${frontmatter.title} | pmai`} description={frontmatter.excerpt ?? "CTF and security write-ups"}>
+  <style>
+    .page__wrap {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Force dark text on white background regardless of theme */
+    .page__wrap,
+    .page__wrap * {
+      color: #2e2a27 !important;
+    }
+    
+    .page__wrap a {
+      color: var(--global-link-color, #e67e22) !important;
+    }
+    
+    .page__wrap a:hover {
+      color: var(--global-link-color-hover, #d35400) !important;
+    }
+    
+    .page__wrap code,
+    .page__wrap pre code {
+      color: #312f2c !important;
+      background: #fff3e3 !important;
+    }
+    
+    .page__wrap h1,
+    .page__wrap h2,
+    .page__wrap h3,
+    .page__wrap h4,
+    .page__wrap h5,
+    .page__wrap h6 {
+      color: #2e2a27 !important;
+    }
+    
+    @media (max-width: 768px) {
+      .page__wrap {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+  <div id="main" role="main" class={hasTOC ? "has-toc" : ""}>
+    {hasTOC && <TOC headings={headings} />}
+
+    <div class="page__wrap">
+      <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+        {frontmatter.title && (
+          <meta itemprop="headline" content={frontmatter.title} />
+        )}
+        {frontmatter.excerpt && (
+          <meta itemprop="description" content={frontmatter.excerpt} />
+        )}
+        {frontmatter.date && (
+          <meta itemprop="datePublished" content={frontmatter.date} />
+        )}
+
+        <div class="page__inner-wrap">
+          <header>
+            {frontmatter.title && (
+              <h1 class="page__title" itemprop="headline">{frontmatter.title}</h1>
+            )}
+            <p class="page__meta">
+              {readTime > 0 && (
+                <>
+                  <i class="fa fa-clock" aria-hidden="true"></i> {readTime} minute read
+                </>
+              )}
+            </p>
+            {formattedDate && (
+              <p class="page__date">
+                <strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong>
+                <time datetime={frontmatter.date}>{formattedDate}</time>
+              </p>
+            )}
+          </header>
+
+          <section class="page__content" itemprop="text">
+            <Content />
+          </section>
+
+          {frontmatter.tags && frontmatter.tags.length > 0 && (
+            <footer class="page__meta">
+              <h4 class="page__meta-title">Tags</h4>
+              <p class="page__taxonomy">
+                {frontmatter.tags.map((tag, idx) => (
+                  <>
+                    <span class="page__taxonomy-item" rel="tag">#{tag}</span>
+                    {idx < frontmatter.tags!.length - 1 && " "}
+                  </>
+                ))}
+              </p>
+            </footer>
+          )}
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+type Heading = { depth: number; slug: string; text: string };
+
+interface Props {
+  headings: Heading[];
+  title?: string;
+  icon?: string;
+  maxDepth?: number;
+}
+
+const { headings, title = "Table of Contents", icon = "list-ul", maxDepth = 4 } = Astro.props;
+
+type TocNode = Heading & { children: TocNode[] };
+const filtered = (headings || []).filter((h) => h.depth >= 1 && h.depth <= maxDepth);
+
+const tree: TocNode[] = [];
+const stack: TocNode[] = [];
+
+for (const heading of filtered) {
+  const node: TocNode = { ...heading, children: [] };
+  while (stack.length && stack[stack.length - 1].depth >= heading.depth) {
+    stack.pop();
+  }
+  if (stack.length === 0) {
+    tree.push(node);
+  } else {
+    stack[stack.length - 1].children.push(node);
+  }
+  stack.push(node);
+}
+
+const renderNodes = (nodes: TocNode[]): string => {
+  if (!nodes.length) return "";
+  const items = nodes
+    .map((node) => {
+      const children = node.children.length ? renderNodes(node.children) : "";
+      return `<li><a href="#${node.slug}">${node.text}</a>${children}</li>`;
+    })
+    .join("");
+  return `<ul class="toc__menu">${items}</ul>`;
+};
+---
+
+{tree.length > 0 && (
+  <aside class="sidebar__left">
+    <nav class="toc sticky">
+      <header>
+        <h4 class="nav__title">
+          <i class={`fa fa-${icon}`}></i> {title}
+        </h4>
+      </header>
+      <div set:html={renderNodes(tree)} />
+    </nav>
+  </aside>
+)}
+
+<script>
+  const tocLinks = document.querySelectorAll(".toc__menu a");
+  const headings = document.querySelectorAll(
+    ".page__content h1[id], .page__content h2[id], .page__content h3[id], .page__content h4[id], .page__content h5[id], .page__content h6[id]"
+  );
+
+  function updateActiveTOCLink() {
+    if (tocLinks.length === 0 || headings.length === 0) return;
+    let current = null;
+    const scrollPos = window.pageYOffset + 100;
+
+    headings.forEach((heading) => {
+      if (heading.offsetTop <= scrollPos) {
+        current = heading;
+      }
+    });
+
+    tocLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (current && link.getAttribute("href") === `#${current.id}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  function setupTOCLinks() {
+    tocLinks.forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        const targetId = anchor.getAttribute("href");
+        if (!targetId || targetId === "#") return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const offsetTop = targetElement.offsetTop - 80;
+          window.scrollTo({ top: offsetTop, behavior: "smooth" });
+        }
+      });
+    });
+  }
+
+  if (tocLinks.length > 0) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupTOCLinks);
+    } else {
+      setupTOCLinks();
+    }
+    window.addEventListener("scroll", updateActiveTOCLink);
+    window.addEventListener("load", updateActiveTOCLink);
+  }
+</script>

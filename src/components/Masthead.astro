@@ -1,0 +1,37 @@
+---
+const navLinks = [
+  { title: "Home", url: "/" },
+  { title: "Blog", url: "/blog/" },
+  { title: "Certifications", url: "/certifications/" },
+  { title: "Contact", url: "/contact/" }
+];
+---
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button aria-label="Toggle navigation"><span class="navicon"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist">
+            <a href="/">
+              <img src="/images/dw-icon.png" alt="DW" class="site-logo" />
+              pmai
+            </a>
+          </li>
+          {navLinks.map((link) => (
+            <li class="masthead__menu-item">
+              <a href={link.url}>{link.title}</a>
+            </li>
+          ))}
+          <li id="theme-toggle" class="masthead__menu-item persist tail">
+            <a role="button" aria-labelledby="theme-icon">
+              <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+/* Override site logo to preserve aspect ratio */
+.site-logo {
+  height: 32px;
+  width: auto !important; /* Let width adjust based on image aspect ratio */
+  border-radius: 0 !important; /* Remove circular crop */
+  object-fit: contain; /* Preserve aspect ratio */
+}

@@ -1,0 +1,31 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Frontmatter {
+  title?: string;
+  excerpt?: string;
+}
+
+interface Props {
+  frontmatter: Frontmatter;
+  Content?: AstroComponentFactory;
+}
+
+const { frontmatter, Content } = Astro.props;
+const hasSlot = Astro.slots.has("default");
+---
+
+<BaseLayout title={frontmatter.title ? `${frontmatter.title} | pmai` : "pmai"} description={frontmatter.excerpt}>
+  <div id="main" role="main">
+    <div class="page__wrap">
+      <article class="page">
+        <div class="page__inner-wrap">
+          {frontmatter.title && <h1 class="page__title">{frontmatter.title}</h1>}
+          <section class="page__content">
+            {Content ? <Content /> : hasSlot ? <slot /> : null}
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

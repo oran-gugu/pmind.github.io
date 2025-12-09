@@ -1,0 +1,232 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Certifications | pmai">
+  <div id="main" role="main">
+    <div class="page__wrap">
+      <article class="page">
+        <div class="page__inner-wrap">
+          <h1 class="page__title">Certifications</h1>
+          <section class="page__content">
+            <style>
+              .cert-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+              }
+
+              .cert-card {
+                background: #fff;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                border: 1px solid #e5e7eb;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+              }
+
+              .cert-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                border-color: #f2a65a;
+              }
+
+              .cert-image-container {
+                width: 100%;
+                height: 240px;
+                overflow: hidden;
+                background: #ffffff;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .cert-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+              }
+
+              .cert-card:hover .cert-image {
+                transform: scale(1.05);
+              }
+
+              .cert-content {
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                background: #ffffff;
+              }
+
+              .cert-header {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 1rem;
+              }
+
+              .cert-icon {
+                font-size: 2rem;
+                margin-right: 0.8rem;
+                color: #f2a65a;
+                flex-shrink: 0;
+              }
+
+              .cert-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #2d3748;
+                margin: 0;
+                line-height: 1.3;
+                letter-spacing: -0.02em;
+              }
+
+              .cert-issuer {
+                font-size: 0.85rem;
+                color: #7a8288;
+                margin-top: 0.3rem;
+              }
+
+              .cert-date {
+                display: inline-block;
+                background: linear-gradient(135deg, #f8c27a 0%, #f08b3e 100%);
+                color: white;
+                padding: 0.35rem 0.9rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                margin-top: 0.8rem;
+                font-weight: 600;
+                box-shadow: 0 2px 8px rgba(240, 139, 62, 0.3);
+              }
+
+              .cert-description {
+                margin-top: 1rem;
+                color: #5a5a5a;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                flex-grow: 1;
+              }
+
+              .cert-button {
+                display: inline-block;
+                background: linear-gradient(135deg, #f2a65a 0%, #f08b3e 100%);
+                color: white !important;
+                padding: 0.7rem 1.5rem;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                border: none;
+                box-shadow: 0 4px 15px rgba(242, 166, 90, 0.35);
+                letter-spacing: 0.3px;
+                text-align: center;
+                margin-top: 1rem;
+              }
+
+              .cert-button:hover {
+                background: linear-gradient(135deg, #f08b3e 0%, #f2a65a 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(242, 166, 90, 0.45);
+                text-decoration: none;
+              }
+
+              @media (max-width: 768px) {
+                .cert-container {
+                  grid-template-columns: 1fr;
+                }
+                
+                .cert-image-container {
+                  height: 200px;
+                }
+              }
+            </style>
+
+            <div class="cert-intro">
+              <p>Here are the professional certifications I have earned throughout my journey in cybersecurity and technology.</p>
+            </div>
+
+            <div class="cert-container">
+              <div class="cert-card">
+                <div class="cert-image-container">
+                  <img src="/images/certificates/Google Cybersecurity.jpg" alt="Google Cybersecurity Certificate" class="cert-image" />
+                </div>
+                <div class="cert-content">
+                  <div class="cert-header">
+                    <div class="cert-icon">
+                      <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                      <h3 class="cert-title">Google Cybersecurity</h3>
+                      <div class="cert-issuer">Google via Coursera</div>
+                    </div>
+                  </div>
+                  <p class="cert-description">
+                    Professional Certificate covering 9 courses in cybersecurity fundamentals, network security, incident response, and security tools.
+                    Includes hands-on labs with Python, Linux, SQL, and SIEM tools.
+                  </p>
+                  <a href="https://www.coursera.org/account/accomplishments/professional-cert/LKKG9YWN5NL2" class="cert-button" target="_blank" rel="noopener noreferrer">
+                    View Certificate
+                  </a>
+                </div>
+              </div>
+
+              <div class="cert-card">
+                <div class="cert-image-container">
+                  <img src="/images/certificates/Cryptography I.jpg" alt="Cryptography I Certificate" class="cert-image" />
+                </div>
+                <div class="cert-content">
+                  <div class="cert-header">
+                    <div class="cert-icon">
+                      <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                      <h3 class="cert-title">Cryptography I</h3>
+                      <div class="cert-issuer">Stanford University via Coursera</div>
+                    </div>
+                  </div>
+                  <p class="cert-description">
+                    Online non-credit course covering cryptographic primitives, symmetric encryption, public key cryptography, 
+                    message integrity, and authenticated encryption schemes.
+                  </p>
+                  <a href="https://coursera.org/verify/V75GRE8UO6NC" class="cert-button" target="_blank" rel="noopener noreferrer">
+                    View Certificate
+                  </a>
+                </div>
+              </div>
+
+              <div class="cert-card">
+                <div class="cert-image-container">
+                  <img src="/images/certificates/Google AI Essentials.jpg" alt="Google AI Essentials Certificate" class="cert-image" />
+                </div>
+                <div class="cert-content">
+                  <div class="cert-header">
+                    <div class="cert-icon">
+                      <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                      <h3 class="cert-title">Google AI Essentials</h3>
+                      <div class="cert-issuer">Google via Coursera</div>
+                    </div>
+                  </div>
+                  <p class="cert-description">
+                    Introduction to artificial intelligence fundamentals, machine learning concepts, and practical AI applications
+                    for enhancing productivity and solving real-world problems.
+                  </p>
+                  <a href="https://coursera.org/verify/RCFIJXLC07D9" class="cert-button" target="_blank" rel="noopener noreferrer">
+                    View Certificate
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

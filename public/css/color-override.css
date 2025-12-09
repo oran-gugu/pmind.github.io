@@ -1,0 +1,56 @@
+/* Override bright orange colors with darker tones */
+:root {
+  --global-base-color: #e67e22 !important;
+  --global-link-color: #e67e22 !important;
+  --global-link-color-hover: #d35400 !important;
+  --global-link-color-visited: #d35400 !important;
+  --global-masthead-link-color-hover: #d35400 !important;
+}
+
+html[data-theme="dark"] {
+  --global-base-color: #e67e22 !important;
+  --global-link-color: #e67e22 !important;
+  --global-link-color-hover: #f39c12 !important;
+  --global-link-color-visited: #f39c12 !important;
+}
+
+/* Override gradient colors in custom components */
+.cert-card,
+.contact-links a,
+.cert-button,
+.post-tag:hover {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+}
+
+.cert-card:hover {
+  border-color: #e67e22 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff3e0 100%) !important;
+}
+
+.cert-date {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+}
+
+.cert-button:hover,
+.contact-links a:hover {
+  background: linear-gradient(135deg, #d35400 0%, #e67e22 100%) !important;
+}
+
+.post-card:hover {
+  border-color: #e67e22 !important;
+}
+
+.post-tag:hover {
+  background: #e67e22 !important;
+}
+
+.cert-icon {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+a:focus {
+  outline-color: #e67e22 !important;
+}

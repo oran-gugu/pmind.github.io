@@ -1,0 +1,89 @@
+---
+const year = new Date().getFullYear();
+---
+
+<div class="page__footer">
+  <footer>
+    <style>
+      .page__footer {
+        background: var(--global-footer-bg-color);
+        border-top: 1px solid var(--global-border-color);
+      }
+      
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+      }
+      
+      .footer-left {
+        flex: 1;
+        color: var(--global-text-color-light);
+        font-size: 0.9rem;
+      }
+      
+      .footer-right {
+        display: flex;
+        gap: 1rem;
+      }
+      
+      .footer-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--global-border-color);
+        border-radius: 8px;
+        color: var(--global-text-color);
+        transition: all 0.2s ease;
+        background: var(--global-bg-color);
+      }
+      
+      .footer-icon:hover {
+        border-color: var(--global-link-color);
+        color: var(--global-link-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .footer-icon i {
+        font-size: 1.2rem;
+      }
+      
+      @media (max-width: 768px) {
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+
+    <div class="footer-content">
+      <div class="footer-left">
+        &copy; {year} pmai. All rights reserved.
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/oran-gugu" class="footer-icon" rel="noopener noreferrer" target="_blank" title="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+      id="MathJax-script"
+    ></script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true, theme: "default" });
+      await mermaid.run({ querySelector: "code.language-mermaid" });
+    </script>
+  </footer>
+</div>

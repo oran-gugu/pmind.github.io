@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact | pmai">
+  <div id="main" role="main">
+    <div class="page__wrap">
+      <article class="page">
+        <div class="page__inner-wrap">
+          <h1 class="page__title">Contact</h1>
+          <section class="page__content">
+            <style>
+              .contact-container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 2rem 0;
+              }
+
+              .contact-intro {
+                text-align: center;
+                margin-bottom: 3rem;
+              }
+
+              .contact-intro h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #494e52;
+              }
+
+              .contact-intro p {
+                font-size: 1.1rem;
+                color: #7a8288;
+                line-height: 1.6;
+              }
+
+              .contact-links {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+              }
+
+              .contact-links li {
+                margin-bottom: 1.5rem;
+              }
+
+              .contact-links a {
+                display: flex;
+                align-items: center;
+                padding: 1.2rem 1.5rem;
+                background: linear-gradient(135deg, #f2a65a 0%, #f08b3e 100%);
+                border-radius: 10px;
+                text-decoration: none;
+                color: #ffffff;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                box-shadow: 0 4px 15px rgba(242, 166, 90, 0.35);
+              }
+
+              .contact-links a:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(242, 166, 90, 0.45);
+                background: linear-gradient(135deg, #f08b3e 0%, #f2a65a 100%);
+              }
+
+              .contact-icon {
+                font-size: 2rem;
+                width: 50px;
+                text-align: center;
+                margin-right: 1.5rem;
+              }
+
+              .contact-icon i {
+                color: #ffffff;
+              }
+
+              .contact-details {
+                flex: 1;
+              }
+
+              .contact-label {
+                display: block;
+                font-size: 0.85rem;
+                color: rgba(255, 255, 255, 0.9);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 0.3rem;
+                font-weight: 600;
+              }
+
+              .contact-value {
+                display: block;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #ffffff;
+              }
+
+              @media (max-width: 768px) {
+                .contact-links a {
+                  padding: 1rem;
+                }
+
+                .contact-icon {
+                  font-size: 1.5rem;
+                  width: 40px;
+                  margin-right: 1rem;
+                }
+
+                .contact-value {
+                  font-size: 1rem;
+                }
+              }
+            </style>
+
+            <div class="contact-container">
+              <div class="contact-intro">
+                <h2>Hello World!</h2>
+                <p>Feel free to reach out to me through any of the following channels.</p>
+              </div>
+
+              <ul class="contact-links">
+                <li>
+                  <a href="mailto:mai.phamhien171@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">Email</span>
+                      <span class="contact-value">mai.phamhien171@gmail.com</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.linkedin.com/in/pm4i" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">
+                      <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">LinkedIn</span>
+                      <span class="contact-value">linkedin.com/in/pm4i</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
